@@ -99,6 +99,11 @@ class DecoraWifiFan(FanEntity):
         self._switch = switch
 
     @property
+    def unique_id(self):
+        """Return the unique id of this fan."""
+        return self._switch.id
+
+    @property
     def name(self) -> str:
         """Get entity name."""
         return self._switch.name
