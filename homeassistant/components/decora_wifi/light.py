@@ -64,7 +64,8 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
                 for switch in residence.get_iot_switches():
                     all_switches.append(switch)
 
-        add_entities(DecoraWifiLight(sw) for sw in all_switches)
+        # DW4SF is a fan switch, not a light.
+        add_entities(DecoraWifiLight(sw) for sw in all_switches if sw.model != 'DW4SF')
     except ValueError:
         _LOGGER.error("Failed to communicate with myLeviton Service")
 
