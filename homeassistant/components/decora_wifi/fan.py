@@ -155,3 +155,10 @@ class DecoraWifiFan(FanEntity):
     def supported_features(self) -> int:
         """Flag supported features."""
         return SUPPORTED_FEATURES
+
+    def update(self):
+        """Fetch new state data for this switch."""
+        try:
+            self._switch.refresh()
+        except ValueError:
+            _LOGGER.error("Failed to update myLeviton fan data")
